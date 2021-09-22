@@ -1762,8 +1762,9 @@ def display(image, dets, class_path, det_type="xywh", image_format=None, size=No
     """
     import matplotlib.patches as patches
     import matplotlib.pyplot as plt
-
-    if image.endswith(".bin"):
+    if isinstance(image, np.ndarray):
+        img = image
+    elif image.endswith(".bin"):
         if image_format.lower() == "rgb565":
             img = load_rgb565_bin_image(image, size[0], size[1])
 
